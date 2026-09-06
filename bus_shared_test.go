@@ -4,7 +4,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/tinywasm/binary"
+	"webtyp.com/binary"
 )
 
 func testBus(t *testing.T) {

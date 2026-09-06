@@ -4,7 +4,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/tinywasm/binary"
+	"webtyp.com/binary"
 )
 
 type Bus interface {

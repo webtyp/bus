@@ -1,14 +1,14 @@
-# Bus Architecture: tinywasm/bus
+# Bus Architecture: webtyp/bus
 
 ## Overview
 
-The `tinywasm/bus` package provides a unified Pub/Sub hub for inter-module communication. It is designed to work identically across all TinyWasm targets: standard Go servers, TinyGo-compiled WASI modules, and browser-based WebAssembly.
+The `webtyp/bus` package provides a unified Pub/Sub hub for inter-module communication. It is designed to work identically across all WebTyp targets: standard Go servers, TinyGo-compiled WASI modules, and browser-based WebAssembly.
 
 To minimize binary size and runtime overhead in TinyGo environments, this implementation uses **slices** instead of maps for topic storage and subscriber management.
 
 ## Key Design Decisions
 
-1. **Single Implementation (No Platform Split)**: Unlike other tinywasm libraries that split behavior between `_backend.go` and `_wasm.go`, the bus uses a single `bus.go` file. The core logic (slices + `sync.RWMutex`) is efficient enough for both platforms and reduces maintenance complexity.
+1. **Single Implementation (No Platform Split)**: Unlike other webtyp libraries that split behavior between `_backend.go` and `_wasm.go`, the bus uses a single `bus.go` file. The core logic (slices + `sync.RWMutex`) is efficient enough for both platforms and reduces maintenance complexity.
 2. **Slices over Maps**: TinyGo's map implementation is significantly heavier than slice operations for small collections. Since most applications use a limited number of topics, O(n) slice scans offer the best trade-off between performance and binary size.
 3. **Thread Safety**: Uses `sync.RWMutex` to ensure safe concurrent access. TinyGo supports mutexes and cooperative goroutines, making this pattern safe for browser and WASI targets.
 4. **Non-blocking Dispatch**: `Publish` dispatches handlers in separate goroutines (`go handler(msg)`). This ensures that a slow or panicking subscriber does not block the entire bus or other subscribers.
@@ -18,7 +18,7 @@ To minimize binary size and runtime overhead in TinyGo environments, this implem
 ```go
 package bus
 
-import "github.com/tinywasm/binary"
+import "webtyp.com/binary"
 
 type Bus interface {
     // Subscribe registers a handler for a topic.
@@ -72,7 +72,7 @@ This maintains strict isolation and allows the server to manage security and rou
 
 ## Build Tag Semantics
 
-For documentation and library development within the TinyWasm ecosystem, we follow these build tag conventions:
+For documentation and library development within the WebTyp ecosystem, we follow these build tag conventions:
 
 | Build Tag | Runtime Environment | Description |
 |-----------|---------------------|-------------|
@@ -84,7 +84,7 @@ For documentation and library development within the TinyWasm ecosystem, we foll
 
 ## Broker vs Bus
 
-- **Bus (`tinywasm/bus`)**: Immediate inter-module event routing. Publish triggers callbacks instantly.
-- **Broker (`tinywasm/broker`)**: Batched event delivery. Enqueues items to be flushed after a time window or reaching a limit.
+- **Bus (`webtyp/bus`)**: Immediate inter-module event routing. Publish triggers callbacks instantly.
+- **Broker (`webtyp/broker`)**: Batched event delivery. Enqueues items to be flushed after a time window or reaching a limit.
 
 They are complementary: a `broker` can be placed on top of a `bus` to debounce and batch frequent events for UI updates or persistent storage.
