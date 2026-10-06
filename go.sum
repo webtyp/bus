@@ -1,6 +1,8 @@
-webtyp.com/binary v0.5.28 h1:23SrqSgAYGuOIYgevMxuuHU71MDjs/RqPGcwjLPfVRQ=
-webtyp.com/binary v0.5.28/go.mod h1:njTvPQekxq0g4Xz1FUwqilDlDnpG+xuqqU2R3EFV18Q=
+webtyp.com/binary v0.5.31 h1:KCVWidOAPmPL9ez7Jpae0ay8sx+QJOC/29o0hQ3/sqs=
+webtyp.com/binary v0.5.31/go.mod h1:Fvo4I6m4UM1YXnrsAGggZszgvvlDqjFKhWeZRyZsNCs=
 webtyp.com/fmt v1.0.0 h1:W0vMMGC6ezg1q2LarAEaVnNvZ26hVqzZdQQH1wcNogM=
 webtyp.com/fmt v1.0.0/go.mod h1:FmTxx713R45J21kbH5JOmKGaaCap3fJPA9Yl2n4Ch7U=
 webtyp.com/model v0.2.2 h1:9+yUcKgnbZombAmnXsKXdCWXWNq5ZgdKDFJj0V102g8=
 webtyp.com/model v0.2.2/go.mod h1:OkyYeE3GOG8eAQGhd9wVsORAhr+xYj3q8avpoGXG25c=
+webtyp.com/msgtype v0.1.0 h1:TQszRqVpn3tWMCt68ZGgehISd/SiEFd1JD/DF6cz+eI=
+webtyp.com/msgtype v0.1.0/go.mod h1:TuJTpQvEfe27S/Vy1TRWelCkSCyrOs8b9qJXSDe2HQ4=
